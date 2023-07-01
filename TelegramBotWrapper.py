@@ -34,6 +34,8 @@ class TelegramBotWrapper:
     MODE_ADMIN = "admin"
     MODE_CHAT = "chat"
     MODE_CHAT_R = "chat-restricted"
+    MODE_PERSONAL_CHAT = "chat-personal"
+    MODE_PERSONAL_CHAT_R = "chat-personal-restricted"
     MODE_NOTEBOOK = "notebook"
     MODE_PERSONA = "persona"
     MODE_QUERY = "query"
@@ -63,28 +65,28 @@ class TelegramBotWrapper:
     # Rules for various mode. 0=False=Restricted, 1=True=Allowed
     user_rules = {
      # messages buttons
-     BTN_NEXT: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 1, MODE_QUERY: 0, },
-     BTN_CONTINUE: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 0, MODE_QUERY: 0, },
-     BTN_DEL_WORD: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 0, MODE_QUERY: 0, },
-     BTN_REGEN: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 0, MODE_QUERY: 1, },
-     BTN_CUTOFF: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 0, MODE_QUERY: 0, },
-     BTN_OPTION: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 1, MODE_QUERY: 1, },
+     BTN_NEXT: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_PERSONAL_CHAT: 1, MODE_PERSONAL_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 1, MODE_QUERY: 0, },
+     BTN_CONTINUE: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1,MODE_PERSONAL_CHAT: 1, MODE_PERSONAL_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 0, MODE_QUERY: 0, },
+     BTN_DEL_WORD: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1,MODE_PERSONAL_CHAT: 1, MODE_PERSONAL_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 0, MODE_QUERY: 0, },
+     BTN_REGEN: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_PERSONAL_CHAT: 1, MODE_PERSONAL_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 0, MODE_QUERY: 1, },
+     BTN_CUTOFF: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_PERSONAL_CHAT: 1, MODE_PERSONAL_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 0, MODE_QUERY: 0, },
+     BTN_OPTION: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_PERSONAL_CHAT: 1, MODE_PERSONAL_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 1, MODE_QUERY: 1, },
      # option buttons
-     BTN_CHAR_LIST: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 0, MODE_NOTEBOOK: 1, MODE_PERSONA: 0, MODE_QUERY: 1, },
-     BTN_CHAR_LOAD: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 0, MODE_NOTEBOOK: 1, MODE_PERSONA: 0, MODE_QUERY: 1, },
-     BTN_RESET: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 0, MODE_QUERY: 0, },
-     BTN_DOWNLOAD: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 1, MODE_QUERY: 1, },
-     BTN_LANG_LIST: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 1, MODE_QUERY: 1, },
-     BTN_LANG_LOAD: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 1, MODE_QUERY: 1, },
-     BTN_VOICE_LIST: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 1, MODE_QUERY: 1, },
-     BTN_VOICE_LOAD: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 1, MODE_QUERY: 1, },
-     BTN_PRESET_LIST: {MODE_ADMIN: 1, MODE_CHAT: 0, MODE_CHAT_R: 0, MODE_NOTEBOOK: 0, MODE_PERSONA: 0, MODE_QUERY: 0, },
-     BTN_PRESET_LOAD: {MODE_ADMIN: 1, MODE_CHAT: 0, MODE_CHAT_R: 0, MODE_NOTEBOOK: 0, MODE_PERSONA: 0, MODE_QUERY: 0, },
-     BTN_MODEL_LIST: {MODE_ADMIN: 1, MODE_CHAT: 0, MODE_CHAT_R: 0, MODE_NOTEBOOK: 0, MODE_PERSONA: 0, MODE_QUERY: 0, },
-     BTN_MODEL_LOAD: {MODE_ADMIN: 1, MODE_CHAT: 0, MODE_CHAT_R: 0, MODE_NOTEBOOK: 0, MODE_PERSONA: 0, MODE_QUERY: 0, },
-     BTN_DELETE: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 1, MODE_QUERY: 1, },
+     BTN_CHAR_LIST: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 0, MODE_PERSONAL_CHAT: 0, MODE_PERSONAL_CHAT_R: 0, MODE_NOTEBOOK: 1, MODE_PERSONA: 0, MODE_QUERY: 1, },
+     BTN_CHAR_LOAD: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 0, MODE_PERSONAL_CHAT: 0, MODE_PERSONAL_CHAT_R: 0, MODE_NOTEBOOK: 1, MODE_PERSONA: 0, MODE_QUERY: 1, },
+     BTN_RESET: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_PERSONAL_CHAT: 1, MODE_PERSONAL_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 0, MODE_QUERY: 0, },
+     BTN_DOWNLOAD: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_PERSONAL_CHAT: 1, MODE_PERSONAL_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 1, MODE_QUERY: 1, },
+     BTN_LANG_LIST: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_PERSONAL_CHAT: 1, MODE_PERSONAL_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 1, MODE_QUERY: 1, },
+     BTN_LANG_LOAD: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_PERSONAL_CHAT: 1, MODE_PERSONAL_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 1, MODE_QUERY: 1, },
+     BTN_VOICE_LIST: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_PERSONAL_CHAT: 1, MODE_PERSONAL_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 1, MODE_QUERY: 1, },
+     BTN_VOICE_LOAD: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_PERSONAL_CHAT: 1, MODE_PERSONAL_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 1, MODE_QUERY: 1, },
+     BTN_PRESET_LIST: {MODE_ADMIN: 1, MODE_CHAT: 0, MODE_CHAT_R: 0, MODE_PERSONAL_CHAT: 0, MODE_PERSONAL_CHAT_R: 0, MODE_NOTEBOOK: 0, MODE_PERSONA: 0, MODE_QUERY: 0, },
+     BTN_PRESET_LOAD: {MODE_ADMIN: 1, MODE_CHAT: 0, MODE_CHAT_R: 0, MODE_PERSONAL_CHAT: 0, MODE_PERSONAL_CHAT_R: 0, MODE_NOTEBOOK: 0, MODE_PERSONA: 0, MODE_QUERY: 0, },
+     BTN_MODEL_LIST: {MODE_ADMIN: 1, MODE_CHAT: 0, MODE_CHAT_R: 0, MODE_PERSONAL_CHAT: 0, MODE_PERSONAL_CHAT_R: 0, MODE_NOTEBOOK: 0, MODE_PERSONA: 0, MODE_QUERY: 0, },
+     BTN_MODEL_LOAD: {MODE_ADMIN: 1, MODE_CHAT: 0, MODE_CHAT_R: 0, MODE_PERSONAL_CHAT: 0, MODE_PERSONAL_CHAT_R: 0, MODE_NOTEBOOK: 0, MODE_PERSONA: 0, MODE_QUERY: 0, },
+     BTN_DELETE: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_PERSONAL_CHAT: 1, MODE_PERSONAL_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 1, MODE_QUERY: 1, },
      # allow to get messages
-     GET_MESSAGE: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 1, MODE_QUERY: 1, },
+     GET_MESSAGE: {MODE_ADMIN: 1, MODE_CHAT: 1, MODE_CHAT_R: 1, MODE_PERSONAL_CHAT: 1, MODE_PERSONAL_CHAT_R: 1, MODE_NOTEBOOK: 1, MODE_PERSONA: 1, MODE_QUERY: 1, },
     }
     # Internal, changeable settings
     replace_prefixes = ["!", "-"]  # Prefix to replace last message
@@ -106,11 +108,11 @@ class TelegramBotWrapper:
     translate_html_tag = ['<span class="tg-spoiler">', '</span>']
     translation_as_hidden_text = "off"
     generation_params = {
-        'max_new_tokens': 256,
+        'max_new_tokens': 2000,
         'seed': -1.0,
         'temperature': 0.7,
-        'top_p': 0.1,
-        'top_k': 40,
+        'top_p': 0.7,
+        'top_k': 20,
         'typical_p': 1,
         'repetition_penalty': 1.18,
         'encoder_repetition_penalty': 1,
@@ -141,6 +143,7 @@ class TelegramBotWrapper:
                  model_lang="en",
                  user_lang="en",
                  characters_dir_path="characters",
+                 characters_personal_dir_path="characters-personal",
                  presets_dir_path="presets",
                  history_dir_path="history",
                  token_file_path="telegram_token.txt",
@@ -155,6 +158,7 @@ class TelegramBotWrapper:
         :param model_lang: language of model
         :param user_lang: language of conversation
         :param characters_dir_path: place where stored characters .json files. Default is "chat".
+        :param characters_personal_dir_path: place where stored personal characters .json files. each character file name will be the unique telegram userid/chatid.
         :param presets_dir_path: path to presets generation presets.
         :param history_dir_path: place where stored chat history. Default is "extensions/telegram_bot/history".
         :param token_file_path: path to token file. Default is "extensions/telegram_bot/telegram_token.txt".
@@ -165,6 +169,8 @@ class TelegramBotWrapper:
         # Set paths to history, default token file, characters dir
         self.history_dir_path = history_dir_path
         self.characters_dir_path = characters_dir_path
+        self.characters_personal_dir_path = characters_personal_dir_path
+        self.charaters_personal_loaded = False
         self.presets_dir_path = presets_dir_path
         self.token_file_path = token_file_path
         # Set bot mode
@@ -208,6 +214,8 @@ class TelegramBotWrapper:
                         self.html_tag[-1] = s.split("=")[-1]
                     if "=" in s and s.split("=")[0] == "characters_dir_path":
                         self.characters_dir_path = s.split("=")[-1]
+                    if "=" in s and s.split("=")[0] == "characters_personal_dir_path":
+                        self.characters_personal_dir_path = s.split("=")[-1]
                     if "=" in s and s.split("=")[0] == "presets_dir_path":
                         self.presets_dir_path = s.split("=")[-1]
                     if "=" in s and s.split("=")[0] == "history_dir_path":
@@ -329,6 +337,13 @@ class TelegramBotWrapper:
             if f.endswith(('.json', '.yaml', '.yml')):
                 char_list.append(f)
         return char_list
+    
+    def parse_characters_personal_dir(self) -> list:
+        char_list = []
+        for f in listdir(self.characters_personal_dir_path):
+            if f.endswith(('.json', '.yaml', '.yml')):
+                char_list.append(f)
+        return char_list
 
     def parse_presets_dir(self) -> list:
         preset_list = []
@@ -337,14 +352,30 @@ class TelegramBotWrapper:
                 preset_list.append(f)
         return preset_list
 
-    def init_check_user(self, chat_id):
-        if chat_id not in self.users:
+    def init_check_user(self, chat_id): #
+        load_characters_path=self.characters_dir_path
+        char_file=self.default_char
+        if chat_id in self.users and (self.MODE_PERSONAL_CHAT or self.MODE_PERSONAL_CHAT_R): # this is for the case where we want to re=load the data for the user, in case he gets approved, without re-running the whole thing
+            if not self.users[chat_id].approved_personal:
+                load_characters_path=self.characters_personal_dir_path
+                char_file=f"{str(chat_id)}.yaml"
+                self.users[chat_id].load_character_file(characters_dir_path=load_characters_path,
+                                                    char_file=char_file)
+                self.users[chat_id].load_user_history(f'{self.history_dir_path}/{str(chat_id)}.yaml')
+                self.users[chat_id].find_and_load_user_char_history(chat_id, self.history_dir_path)
+        elif chat_id not in self.users:
             # Load default
+            if (self.MODE_PERSONAL_CHAT or self.MODE_PERSONAL_CHAT_R):
+                load_characters_path=self.characters_personal_dir_path
+                char_file=f"{str(chat_id)}.yaml"
             self.users.update({chat_id: User()})
-            self.users[chat_id].load_character_file(characters_dir_path=self.characters_dir_path,
-                                                    char_file=self.default_char)
-            self.users[chat_id].load_user_history(f'{self.history_dir_path}/{str(chat_id)}.json')
+            self.users[chat_id].load_character_file(characters_dir_path=load_characters_path,
+                                                    char_file=char_file)
+            self.users[chat_id].load_user_history(f'{self.history_dir_path}/{str(chat_id)}.yaml')
             self.users[chat_id].find_and_load_user_char_history(chat_id, self.history_dir_path)
+            # if chat mode is set chat_personal or chat_personal_restrcitcte, we will create a new profile for this user in characters_personal_dir path
+            if (self.MODE_PERSONAL_CHAT or self.MODE_PERSONAL_CHAT_R):
+                self.users[chat_id].save_new_personal_character_file(chat_id,self.characters_personal_dir_path)
 
     def thread_get_json_document(self, upd: Update, context: CallbackContext):
         chat_id = upd.message.chat.id
@@ -429,6 +460,7 @@ class TelegramBotWrapper:
         # Extract user input and chat ID
         user_text = upd.message.text
         chat_id = upd.message.chat.id
+        
         # Send "typing" message
         typing = self.typing_status_start(context, chat_id)
         try:
@@ -436,6 +468,10 @@ class TelegramBotWrapper:
                 return False
             self.init_check_user(chat_id)
             user = self.users[chat_id]
+            if (self.MODE_PERSONAL_CHAT or self.MODE_PERSONAL_CHAT_R): # in these two modes, we don't like strangers, and we will waste our resources on them
+                if not self.users[chat_id].approved_personal:
+                    self.send(text=f"Sorry {chat_id}, I don't know who you are, and I don't like strangers", chat_id=chat_id, context=context)
+                    return
             # Generate answer and replace "typing" message with it
             user_text = self.prepare_text(user_text, self.users[chat_id].language, "to_model")
             answer, system_message = self.generate_answer(user_in=user_text, chat_id=chat_id)
@@ -911,7 +947,7 @@ class TelegramBotWrapper:
         # Set eos_token and stopping_strings.
         stopping_strings = self.stopping_strings.copy()
         eos_token = self.eos_token
-        if self.bot_mode in [self.MODE_CHAT, self.MODE_CHAT_R, self.MODE_ADMIN]:
+        if self.bot_mode in [self.MODE_CHAT, self.MODE_CHAT_R,self.MODE_PERSONAL_CHAT, self.MODE_PERSONAL_CHAT_R, self.MODE_ADMIN]:
             stopping_strings += ["\n" + user.name1 + ":", "\n" + user.name2 + ":", ]
 
         # Make prompt: context + example + conversation history

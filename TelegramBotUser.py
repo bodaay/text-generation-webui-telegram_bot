@@ -47,6 +47,7 @@ class TelegramBotUser:
         self.context: str = context
         self.example: str = example
         self.language: str = language
+        self.approved_personal = False 
         self.silero_speaker: str = silero_speaker
         self.silero_model_id: str = silero_model_id
         self.turn_template: str = turn_template
@@ -80,6 +81,7 @@ class TelegramBotUser:
             "char_file": self.char_file,
             "name1": self.name1,
             "name2": self.name2,
+            "approved": self.approved_personal,
             "context": self.context,
             "example": self.example,
             "language": self.language,
@@ -99,6 +101,7 @@ class TelegramBotUser:
             self.char_file = data["char_file"] if "char_file" in data else ""
             self.name1 = data["name1"] if "name1" in data else "You"
             self.name2 = data["name2"] if "name2" in data else "Bot"
+            self.approved_personal = data["approved"] if "approved" in data else False
             self.context = data["context"] if "context" in data else ""
             self.example = data["example"] if "example" in data else ""
             self.language = data["language"] if "language" in data else "en"
@@ -117,6 +120,7 @@ class TelegramBotUser:
     def load_character_file(self, characters_dir_path: str, char_file: str):
         # Copy default user data. If reading will fail - return default user data
         try:
+            print(f"{characters_dir_path}/{char_file}")
             # Try to read char file.
             char_file_path = Path(f'{characters_dir_path}/{char_file}')
             with open(char_file_path, 'r', encoding='utf-8') as user_file:
@@ -130,6 +134,8 @@ class TelegramBotUser:
                 self.name1 = data['you_name']
             if 'char_name' in data:
                 self.name2 = data['char_name']
+            if 'approved' in data:
+                self.approved_personal = data['approved']
             if 'name' in data:
                 self.name2 = data['name']
             if 'turn_template' in data:
@@ -159,7 +165,18 @@ class TelegramBotUser:
             print("load_char_json_file", exception)
         finally:
             return self
-
+    def save_new_personal_character_file(self,chat_id, characters_dir_path: str):
+        fileJson={}
+        fileJson['you_name']=self.name1
+        fileJson['char_name']=self.name2
+        fileJson['context']= self.context
+        fileJson['greeting']=self.greeting
+        fileJson['approved']=self.approved_personal
+        userid_character_path = Path(f"{characters_dir_path}/{chat_id}.yaml")
+        import os
+        if not os.path.exists(userid_character_path):
+            with userid_character_path.open("w", encoding="utf-8") as user_file:
+                yaml.dump(fileJson, user_file, allow_unicode=True)
     def replace_context_templates(self, s: str) -> str:
         s = s.replace('{{char}}', self.name2)
         s = s.replace('{{user}}', self.name1)
